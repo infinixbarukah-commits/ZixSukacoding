@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Web Sederhana</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #000000, #333333);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    .login-box, .welcome {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    input {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 80%;
+    }
+    button {
+      padding: 10px 20px;
+      background: #00ff88;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #00cc6a;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      margin-bottom: 15px;
+    }
+    .logout {
+      margin-top: 15px;
+      display: inline-block;
+      color: #00ff88;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box" id="loginBox">
+    <h2>Login Dulu</h2>
+    <input type="text" id="username" placeholder="Username (min 3 huruf)">
+    <input type="password" id="password" placeholder="Password (min 5 huruf)">
+    <button onclick="login()">Masuk</button>
+  </div>
+
+  <div class="welcome" id="welcome" style="display:none;">
+    <video autoplay muted loop playsinline>
+      <source src="https://files.catbox.moe/z3r3ef.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <h2>🎉 Makasih udah masuk web kami 🎉</h2>
+    <p id="welcomeText"></p>
+    <p>Semoga harimu menyenangkan ✨</p>
+    <span class="logout" onclick="logout()">Keluar</span>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (user === "" || pass === "") {
+        alert("Username dan password tidak boleh kosong!");
+        return;
+      }
+      if (user.length < 3) {
+        alert("Username minimal 3 huruf!");
+        return;
+      }
+      if (pass.length < 5) {
+        alert("Password minimal 5 huruf!");
+        return;
+      }
+
+      document.getElementById('loginBox').style.display = "none";
+      document.getElementById('welcome').style.display = "block";
+      document.getElementById('welcomeText').innerHTML = `Hai, <b>${user}</b>! Makasih udah masuk 🌟`;
+    }
+
+    function logout() {
+      document.getElementById('welcome').style.display = "none";
+      document.getElementById('loginBox').style.display = "block";
+      document.getElementById('username').value = "";
+      document.getElementById('password').value = "";
+    }
+  </script>
+
+</body>
+</html>
